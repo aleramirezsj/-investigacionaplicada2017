@@ -104,11 +104,11 @@ class ControladorPrincipal{
                             <meta http-equiv='Content-type' content='text/html;charset=utf-8' />
                             <meta name='viewport' content='width=device-width, initial-scale=1.0'> 
                             <link href='static/css/bootstrap.css' rel='stylesheet'>
-                            <link href='node_modules/bootstrap-fileinput/css/fileinput.css' media='all' rel='stylesheet' type='text/css'/>                            
+                            <link href='static/css/fileinput.css' media='all' rel='stylesheet' type='text/css'/>                            
                             <script src='static/js/jquery.js'></script> 
                             <script src='static/js/bootstrap.js'></script>
-                            <script src='node_modules/bootstrap-fileinput/js/fileinput.js' type='text/javascript'></script>
-                            <script src='node_modules/bootstrap-fileinput/js/locales/es.js' type='text/javascript'></script>                            
+                            <script src='static/js/fileinput.js' type='text/javascript'></script>
+                            <script src='static/js/es.js' type='text/javascript'></script>                            
                             <script src='static/js/codigo.js'></script>
                         </head>
                         <body>";
