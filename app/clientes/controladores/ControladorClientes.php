@@ -37,13 +37,22 @@ class ControladorClientes
             }
         }
         else
-            $this->listar();
+        {
+            if (isset($_REQUEST['seccion']))
+                if ($_REQUEST['seccion']=="clientes")
+                    $this->listar();
+        }
     }
     
     public function listar(){
         $registrosObtenidos=$this->modelo->obtenerTodos();
 	$this->vista->listar($registrosObtenidos);
     }
+    
+    public function listarPorCadena(){
+        $registrosObtenidos=$this->modelo->obtenerPorCadena();
+	$this->vista->listarPorCadena($registrosObtenidos);
+    }    
     
     public function eliminar(){
         $this->modelo->eliminar();

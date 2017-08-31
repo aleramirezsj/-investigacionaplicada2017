@@ -9,7 +9,21 @@ class ModeloClientes
             $resultado=$miConexion->query("call obtener_clientes()");
             return $resultado;
 	}
-           
+
+	public function obtenerPorCadena()
+	{
+            //compruebo que exista la variable
+            
+            if (isset($_REQUEST['txtCadenaBusqueda'])){
+                $cadenaBusqueda=$_REQUEST['txtCadenaBusqueda']; 
+                $parametros="'$cadenaBusqueda'";
+                //echo "<script>alert($parametros)</script>";                
+                $miConexion=HelperDatos::obtenerConexion();
+                $resultado=$miConexion->query("call obtener_clientes_por_cadena($parametros)");
+                return $resultado;
+            }
+	}        
+        
 	public function obtenerUno()
 	{
             $miConexion=HelperDatos::obtenerConexion();

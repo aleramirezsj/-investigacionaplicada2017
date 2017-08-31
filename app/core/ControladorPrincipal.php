@@ -41,7 +41,7 @@ class ControladorPrincipal{
         }
         echo "</div>";
     }
-
+    
     //crea el menú principal de la aplicación web, permitiendo el acceso a los
     //diferentes módulos (clientes, productos)
     public static function enlaces(){
@@ -98,6 +98,7 @@ class ControladorPrincipal{
     //arma el encabezado de las páginas Html, title, head, insertando el 
     //código CSS, javascript (bootstrap,Jquery)
     public static function encabezadoHtml(){
+            session_start();
             echo "<!DOCTYPE html>
                     <html lang='es'>
                         <head>
@@ -109,10 +110,50 @@ class ControladorPrincipal{
                             <script src='static/js/bootstrap.js'></script>
                             <script src='static/js/fileinput.js' type='text/javascript'></script>
                             <script src='static/js/es.js' type='text/javascript'></script>                            
-                            <script src='static/js/codigo.js'></script>
+                            <script src='static/js/codigo.js' type='text/javascript'></script>
                         </head>
                         <body>";
 
+    }
+    public static function chequeoLogin()
+    {
+        if (!isset($_SESSION['usuario']))
+        {
+            if (isset($_REQUEST['txtUsuario']))
+            {
+                if (($_REQUEST['txtUsuario']=="admin")&&($_REQUEST['txtPassword']=="1234"))
+                {
+                    $_SESSION['usuario']="admin";
+                    return true;
+                }
+                else
+                {
+                    ControladorPrincipal::login();
+                    return false;
+                }
+            }
+            else
+            {
+                ControladorPrincipal::login();
+                return false;
+            }
+        }
+        else
+            return true;
+    }
+    
+    private static function login()
+    {
+        echo "<div class='container'><form action='index.php' method='post' >
+                    <h4>Inicio de sesión:</h4>
+                    <div class='form-group'>
+                            <label for='txtUsuario'>Usuario</label>
+                            <input type='text' id='txtUsuario' name='txtUsuario' placeholder='Ingrese el usuario...' class='form-control' />
+                            <label for='txtPassword'>Contraseña</label>
+                            <input type='password' id='txtPassword' name='txtPassword' placeholder='Ingrese la contraseña...' class='form-control' />
+                            <input type='submit' value='Iniciar sesión' class='btn btn-default' />
+                    </div>
+		</form></div>";
     }
 }
 
